@@ -1,0 +1,48 @@
+clc;
+close all;
+clear all;
+
+N = input('Enter the N-point to be calculated for DFT: ');
+x = input('Enter the sequence: ');
+
+z = zeros(1, N);  % Initialize the output array for storing DFT results
+
+for k = 1:N
+    X_k = 0;  % Initialize the sum for each k
+    for n = 1:N
+        X_k = X_k + x(n) * exp(-1j * 2 * pi * (n-1) * (k-1) / N);  % DFT formula
+    end
+    z(k) = X_k;  % Store the result for each 'k'
+end
+
+fprintf('The %d-point DFT of the given input sequence is:\n', N);
+disp(z);
+
+{4
+[1 2 3 4]}
+
+=============
+idft
+---
+clc;
+close all;
+clear all;
+
+N = input('Enter the N-point to be calculated for IDFT: ');
+x = input('Enter the sequence: ');
+
+sum = zeros(1, N);
+
+for k = 1:N
+    for n = 1:N
+        sum(k) = sum(k) + x(n) * exp((j * 2 * pi * (n-1) * (k-1) / N));
+    end
+end
+
+out = (1/N) * sum;
+
+fprintf('The %d-point IDFT of the given input sequence is:\n', N);
+disp(out);
+
+{4
+[2 1+i 1 1-i]}
